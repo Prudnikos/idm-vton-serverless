@@ -14,11 +14,10 @@ RUN git clone https://github.com/yisol/IDM-VTON.git /workspace/IDM-VTON
 
 WORKDIR /workspace/IDM-VTON
 
-# Pin numpy<2 first (base image torch compiled with numpy 1.x)
-RUN pip install --no-cache-dir "numpy<2"
-
-# Install Python dependencies (pinned for compatibility)
-RUN pip install --no-cache-dir \
+# Force remove conflicting packages from base image, then install pinned versions
+RUN pip uninstall -y numpy diffusers transformers huggingface_hub accelerate 2>/dev/null || true && \
+    pip install --no-cache-dir --force-reinstall \
+    "numpy==1.26.4" \
     "diffusers==0.27.2" \
     "transformers==4.41.2" \
     "accelerate==0.30.1" \
