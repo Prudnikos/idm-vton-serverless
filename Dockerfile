@@ -18,10 +18,11 @@ WORKDIR /workspace/IDM-VTON
 RUN pip uninstall -y numpy diffusers transformers huggingface_hub accelerate 2>/dev/null || true && \
     pip install --no-cache-dir --force-reinstall \
     "numpy==1.26.4" \
-    "diffusers==0.27.2" \
-    "transformers==4.41.2" \
-    "accelerate==0.30.1" \
+    "diffusers==0.25.0" \
+    "transformers==4.36.2" \
+    "accelerate==0.25.0" \
     "huggingface_hub==0.23.4" \
+    einops \
     safetensors \
     opencv-python-headless \
     Pillow \
