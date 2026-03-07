@@ -43,11 +43,7 @@ RUN mkdir -p ckpt/densepose ckpt/humanparsing ckpt/openpose/ckpts \
         "https://huggingface.co/spaces/yisol/IDM-VTON/resolve/main/ckpt/openpose/ckpts/body_pose_model.pth"
 
 # Pre-download HuggingFace model weights (baked into image for fast cold start)
-RUN python -c "
-from huggingface_hub import snapshot_download
-snapshot_download('yisol/IDM-VTON', local_dir='/workspace/IDM-VTON/models/idm-vton')
-print('✅ IDM-VTON weights downloaded')
-"
+RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('yisol/IDM-VTON', local_dir='/workspace/IDM-VTON/models/idm-vton'); print('IDM-VTON weights downloaded')"
 
 # Copy handler
 COPY handler.py /workspace/IDM-VTON/handler.py
