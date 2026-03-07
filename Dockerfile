@@ -14,19 +14,22 @@ RUN git clone https://github.com/yisol/IDM-VTON.git /workspace/IDM-VTON
 
 WORKDIR /workspace/IDM-VTON
 
-# Install Python dependencies
+# Pin numpy<2 first (base image torch compiled with numpy 1.x)
+RUN pip install --no-cache-dir "numpy<2"
+
+# Install Python dependencies (pinned for compatibility)
 RUN pip install --no-cache-dir \
-    diffusers==0.25.0 \
-    transformers==4.36.2 \
-    accelerate==0.25.0 \
+    "diffusers==0.27.2" \
+    "transformers==4.41.2" \
+    "accelerate==0.30.1" \
+    "huggingface_hub==0.23.4" \
     safetensors \
     opencv-python-headless \
     Pillow \
     onnxruntime-gpu \
     scipy \
     scikit-image \
-    runpod \
-    huggingface_hub
+    runpod
 
 # Install detectron2 for DensePose
 RUN pip install --no-cache-dir 'git+https://github.com/facebookresearch/detectron2.git'
