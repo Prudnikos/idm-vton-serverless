@@ -1,0 +1,10 @@
+{
+  "input": {
+    "human_image_base64": "BASE64_ENCODED_PERSON_PHOTO_HERE",
+    "garment_image_base64": "BASE64_ENCODED_GARMENT_PHOTO_HERE",
+    "category": "upper_body",
+    "num_inference_steps": 30,
+    "guidance_scale": 2.0,
+    "seed": 42
+  }
+}
