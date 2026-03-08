@@ -144,8 +144,8 @@ def run_tryon(human_img_pil, garment_img_pil, garment_des="a garment",
     # Get mask
     mask, mask_gray = get_mask_location('hd', category, model_parse, keypoints)
     mask = mask.resize((768, 1024))
-    mask_gray = (mask_gray + 1.0) / 2.0
-    mask_gray = to_pil_image(mask_gray)
+    if not isinstance(mask_gray, Image.Image):
+        mask_gray = to_pil_image((mask_gray + 1.0) / 2.0)
     mask_gray = mask_gray.resize((768, 1024))
 
     # DensePose
